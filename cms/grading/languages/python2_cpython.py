@@ -48,6 +48,11 @@ class Python2CPython(CompiledLanguage):
         """See Language.source_extensions."""
         return [".py"]
 
+    @property
+    def time_multiplier(self):
+        """See Language.time_multiplier."""
+        return 10
+
     def get_compilation_commands(self,
                                  source_filenames, executable_filename,
                                  for_evaluation=True):

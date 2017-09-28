@@ -101,6 +101,16 @@ class Language(object):
         return self.object_extensions[0] \
             if len(self.object_extensions) > 0 else None
 
+    @property
+    def time_multiplier(self):
+        """Factor to increase the time limit
+
+        Some languages like python are much slower than C++. Thus we extend the
+        time limit by some factor to allow them to run in time.
+
+        """
+        return 1
+
     def get_compilation_commands(self,
                                  source_filenames, executable_filename,
                                  for_evaluation=True):
