@@ -213,7 +213,7 @@ class Communication(TaskType):
         manager = evaluation_step_before_run(
             sandbox_mgr,
             manager_command,
-            num_processes * job.time_limit,
+            num_processes * job.multiplied_time_limit,
             0,
             allow_dirs=manager_allow_dirs,
             writable_files=["output.txt"],
@@ -248,7 +248,7 @@ class Communication(TaskType):
             processes[i] = evaluation_step_before_run(
                 sandbox_user[i],
                 commands[-1],
-                job.time_limit,
+                job.multiplied_time_limit,
                 job.memory_limit,
                 allow_dirs=user_allow_dirs)
 
@@ -264,7 +264,7 @@ class Communication(TaskType):
             evaluation_step_after_run(sandbox_mgr)
 
         if plus_user['exit_status'] == Sandbox.EXIT_OK and \
-                plus_user["execution_time"] >= job.time_limit:
+                plus_user["execution_time"] >= job.multiplied_time_limit:
             plus_user['exit_status'] = Sandbox.EXIT_TIMEOUT
 
         # Merge results.

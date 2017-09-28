@@ -254,7 +254,7 @@ class Batch(TaskType):
         success, plus = evaluation_step(
             sandbox,
             commands,
-            job.time_limit,
+            job.multiplied_time_limit,
             job.memory_limit,
             writable_files=files_allowing_write,
             stdin_redirect=stdin_redirect,
