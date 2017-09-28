@@ -472,6 +472,7 @@ class EvaluationJob(Job):
         self.time_limit = time_limit
         if language is not None:
             self.time_limit *= get_language(language).time_multiplier
+            logger.debug("Time limit set to %s for %s", self.time_limit, info)
         self.memory_limit = memory_limit
         self.outcome = outcome
         self.user_output = user_output
