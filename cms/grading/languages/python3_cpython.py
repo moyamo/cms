@@ -59,7 +59,8 @@ class Python3CPython(Language):
         """See Language.get_compilation_commands."""
         # Zip up the source files
         zip_command = ["/usr/bin/zip", executable_filename] + source_filenames
-        return [zip_command]
+        mv_command = ["/bin/mv", executable_filename + '.zip', executable_filename]
+        return [zip_command, mv_command]
 
     def get_evaluation_commands(
             self, executable_filename, main=None, args=None):
