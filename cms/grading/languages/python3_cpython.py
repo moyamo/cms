@@ -57,12 +57,14 @@ class Python3CPython(Language):
                                  source_filenames, executable_filename,
                                  for_evaluation=True):
         """See Language.get_compilation_commands."""
-        # Just move the source file
-        mv_command = ["/bin/mv", source_filenames[0], executable_filename]
-        return [mv_command]
+        # Zip up the source files
+        zip_command = ["/usr/bin/zip", executable_filename] + source_filenames
+        return [zip_command]
 
     def get_evaluation_commands(
             self, executable_filename, main=None, args=None):
         """See Language.get_evaluation_commands."""
         args = args if args is not None else []
-        return [["/usr/bin/python3", executable_filename] + args]
+        unzip_command = ["/usr/bin/unzip", executable_filename]
+        python_command = ["/usr/bin/python3", main + '.py'] + args
+        return [unzip_command, python_command]
